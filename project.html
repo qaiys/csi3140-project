@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mapbox Marker Messages</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet" />
+  <style>
+    #map {
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <button id="downloadBtn">Download Markers as JSON</button>
+  <input type="file" id="uploadInput">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGljZTEyMzQ1NiIsImEiOiJjbGs3djJ6YXEwYnk4M2VucGpuMDU0Ynd3In0.bg14TV_yK8WbM_7lO_k-3g';
+
+    // Initialize Map
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [0, 0], // Set initial map center
+      zoom: 1, // Set initial zoom level
+    });
+
+    // Keep track of markers and their messages
+    var markers = [];
+    var messages = [];
+
+    // Add a marker to the map and bind a popup with a message
+    function addMarker(lngLat, message) {
+      var el = document.createElement('div');
+      el.className = 'marker';
+      el.style.backgroundImage = 'url(https://placekitten.com/g/30/30/)';
+      el.style.width = '30px';
+      el.style.height = '30px';
+
+      var popup = new mapboxgl.Popup({ offset: 25 }).setText(message);
+
+      var marker = new mapboxgl.Marker(el)
+        .setLngLat(lngLat)
+        .setPopup(popup)
+        .addTo(map);
+
+      markers.push(marker);
+      messages.push(message);
+    }
+
+    // Event listener for map click
+    map.on('click', function (e) {
+      var features = map.queryRenderedFeatures(e.point, { layers: ['custom-marker'] });
+
+      if (!features.length) {
+        var message = prompt('Enter your message.\nLeave blank to read someone else\'s message.');
+        if (message) {
+          addMarker(e.lngLat, message);
+        }
+      }
+    });
+
+    // Event listener for map zoom
+    map.on('zoom', function () {
+      markers.forEach(function (marker) {
+        var lngLat = marker.getLngLat();
+        marker.setLngLat(lngLat);
+      });
+    });
+
+    // Event listener for marker hover
+    map.on('mouseenter', 'custom-marker', function (e) {
+      map.getCanvas().style.cursor = 'pointer';
+      var coordinates = e.features[0].geometry.coordinates.slice();
+      var message = e.features[0].properties.message;
+
+      new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML('<p>' + message + '</p>')
+        .addTo(map);
+    });
+
+    // Event listener for marker leave
+    map.on('mouseleave', 'custom-marker', function () {
+      map.getCanvas().style.cursor = '';
+      map.getPopup().remove();
+    });
+
+    // Add a custom layer for the markers
+    map.on('load', function () {
+      map.addLayer({
+        id: 'custom-marker',
+        type: 'symbol',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: [],
+          },
+        },
+        layout: {
+          'icon-image': 'cat', // Replace 'cat' with your custom icon image (you can upload an image to Mapbox and use its name here)
+          'icon-size': 0.6,
+        },
+      });
+
+      // Set the data for the custom layer
+      markers.forEach(function (marker, index) {
+        var feature = {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [markers[index].getLngLat().lng, markers[index].getLngLat().lat],
+          },
+          properties: {
+            message: messages[index],
+          },
+        };
+        map.getSource('custom-marker').setData({
+          type: 'FeatureCollection',
+          features: [...map.getSource('custom-marker')._data.features, feature],
+        });
+      });
+    });
+
+
+
+        // Function to download markers as JSON
+        function downloadMarkers() {
+      var data = markers.map(function (marker, index) {
+        return {
+          coordinates: [markers[index].getLngLat().lng, markers[index].getLngLat().lat],
+          message: messages[index],
+        };
+      });
+
+      var dataStr = JSON.stringify(data, null, 2);
+      var blob = new Blob([dataStr], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+
+      var a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'markers.json';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
+
+    // Event listener for the Download button
+    document.getElementById('downloadBtn').addEventListener('click', downloadMarkers);
+
+    function handleFileSelect(evt) {
+      var file = evt.target.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var content = e.target.result;
+        var data = JSON.parse(content);
+
+        data.forEach(function (item) {
+          var message = item.message;
+          var lngLat = item.coordinates;
+          addMarker(lngLat, message);
+        });
+      };
+
+      reader.readAsText(file);
+    }
+
+    // Event listener for the file input change
+    document.getElementById('uploadInput').addEventListener('change', handleFileSelect);    
+
+
+  </script>
+</body>
+</html>
