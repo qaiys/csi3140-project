@@ -1,4 +1,5 @@
-var form, username, password, invalidDiv;
+var form, name, email, username, password, password2;
+var inputGroup;
 var submitBtn;
 const defaultUsers = '{"users": [{"id": 1, "username": "testUser1", "password":"abc123", "name":"John Doe", "email":"john.doe@gmail.com"}, {"id": 2, "username": "testUser2", "password":"qwerty", "name":"Jane Smith", "email":"jane.smith@gmail.com"}]}';
 const users1 = JSON.parse(defaultUsers).users; // array
@@ -7,10 +8,12 @@ var users2;
 window.addEventListener("load", start, false);
 
 function start() {
-	form = document.getElementById("form");
+		form = document.getElementById("form");
+		name = document.getElementById("name");
+		email = document.getElementById("email");
   	username = document.getElementById("username");
   	password = document.getElementById("password");
-  	invalidDiv = document.getElementById("incorrectCredentials");
+  	password2 = document.getElementById("password2");
   	submitBtn = document.getElementById("submitBtn");
 
   	

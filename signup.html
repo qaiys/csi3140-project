@@ -54,38 +54,63 @@
 						</div>
 				</div>
 
-		  	<form id="form" action="confirmed.html" method="get" class="needs-validation" novalidate>
+		  	<form id="form" action="project.html" method="get" class="needs-validation">
+
+		  		<div class="row justify-content-center">
+		   			
+				   <div class="col-sm-3">
+				   	  <label for="name" class="form-label">Name</label>
+				      <input id="name" type="text" class="form-control" placeholder="Enter your name" aria-label="name" required>
+				   </div>
+				   
+				</div>
+
+				<div class="row justify-content-center">
+		   			
+				   <div class="col-sm-3">
+				   	  <label for="name" class="form-label">Email Address</label>
+				      <input id="email" type="email" class="form-control" placeholder="example@domain.com" aria-label="name" required>
+				   </div>
+				   
+				</div>
+
+				<br/>
 		   		<div class="row justify-content-center">
 		   			
 				   <div class="col-sm-3">
 				   	  <label for="username" class="form-label">Username</label>
 				      <input id="username" type="text" class="form-control" placeholder="Enter username" aria-label="username" required>
+				      <div class="invalid-feedback">This username already exists.</div>
 				   </div>
 				   
 				</div>
 
 				<div class="row justify-content-center">
 					<div class="col-sm-3">
-				   	  <label for="lastName" class="form-label">Password</label>
-				      <input id="lastName" type="password" class="form-control" placeholder="Enter password" aria-label="Password" required>
+				   	  <label for="password" class="form-label">Password</label>
+				      <input id="password" type="password" class="form-control" placeholder="Enter password" aria-label="Password" required>
+				      <div class="invalid-feedback">Please enter a password.</div>
 				   </div>
 				</div>
+
+				<div class="row justify-content-center">
+					<div class="col-sm-3">
+				   	  <label for="password2" class="form-label">Confirm Password</label>
+				      <input id="password2" type="password" class="form-control" placeholder="Enter password" aria-label="Password" required>
+				      <div class="invalid-feedback">This password does not match the password you entered above.</div>
+				   </div>
+				</div>
+
 
 				<br/>
 
 				<div class="row justify-content-center">
 					<div class="col-sm-3 text-center">
-				   	  <button id="submitBtn" type="submit" class="signInBtn2">Sign In</button>
+				   	  <button id="submitBtn" type="submit" class="signInBtn2">Create Account</button>
 					  			  
 				   </div>
 				</div>
-				<div class="row justify-content-center">
-					<div class="col-sm-3 text-center">
-				   	  <a href="signup.html">Don't have an account? Sign up now.</a>
-					  
-					  
-				   </div>
-				</div>
+				
 				
 			</form>
 			</div>
