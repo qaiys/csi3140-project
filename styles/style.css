@@ -1,0 +1,287 @@
+.accordion-button:focus {
+	background-color: #e4cef0;
+	box-shadow: none;
+}
+
+.accordion-button.collapsed {
+	background: #e4cef0;
+	box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+	background-color: #e4cef0;
+}
+
+
+
+.accordion-item {
+	border-color: #e4cef0;
+
+}
+
+
+body {
+	font-family: 'Trebuchet MS', sans-serif;
+}
+
+.signInBtn {
+	background-color: #258f56;
+	color: white;
+	margin-top: 5px;
+    margin-left: 15px;
+	margin-right: 15px;
+	padding: 10px 15px;
+	border-radius: 8px;
+	border: none;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signInBtn:hover {
+	background-color: #28b86b;
+}
+
+.signInBtn2 {
+	background-color: #258f56;
+	font-size: 18px;
+	color: white;
+	margin-top: 5px;
+	padding: 10px 15px;
+	border-radius: 8px;
+	border: none;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signInBtn2:hover {
+	background-color: #28b86b;
+}
+
+.homeSignBtnContainer {
+  display: block;
+  justify-content: center;
+  align-items: center;	
+}
+
+.homeSignBtn {
+	background-color: #258f56;
+	font-size: 20px;
+	color: white;
+	margin-top: 5px;
+    margin-left: 15px;
+	margin-right: 15px;
+	padding: 15px 20px;
+	border-radius: 8px;
+	border: none;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.homeSignBtn:hover {
+	background-color: #28b86b;
+}
+
+
+.card {
+	border:none;
+	border-radius: 2px;
+	background-color:#e4cef0;
+	margin-top: 15px;
+	margin-right: 15px;
+	margin-bottom: 20px;
+	transition: transform 0.5s;
+}
+
+.card:hover {
+	cursor: pointer;
+	transform: scale(1.10); 
+}
+
+.card-title {
+	margin-top: 0px;
+}
+
+.carousel {
+	padding: 10px;
+	border:solid #341948;;
+}
+
+.collapsibleBtn {
+	border: none;
+	background-color: #887BB0;
+	text-align: left;
+	padding: 10px 15px;
+	border-radius: 8px;
+	width: 100%;
+	margin-bottom: 15px;
+
+}
+
+.container{
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        transform: translate3d(0,40px,0);
+        opacity: 0;
+    }
+    100% {
+    		transform: translate3d(0,0,0);
+        opacity: 1;
+     }
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	color: #1f4d3d;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.homeBtn {
+	background-color: #258f56;
+    border: none;
+    margin-top: 20px;
+    margin-left: 15px;
+	margin-right: 15px;
+	padding: 15px 20px;
+	border-radius: 8px;
+  display: inline-block;
+}
+
+.homeBtn:hover {
+	background-color: #28b86b;;
+}
+
+.homeBtn a {
+	font-weight: bold;
+	text-align: center;
+	color: white;
+	text-decoration: none;
+}
+
+.home-img {
+	width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+
+}
+
+.form-check-input {
+	border-color: #30848a;
+}
+
+
+.form-control {
+	border-color: #30848a;
+}
+
+.form-select {
+	border-color: #30848a;
+	max-width: fit-content;
+	
+}
+
+.input-group-text {
+	background-color: #eedff7;
+	border-color: #A58CB3;
+
+}
+
+.modal {
+	width: 100%;
+}
+
+.modal-body {
+	padding: 20px;
+	padding-top: 10px;
+}
+.modal-header {
+	background-color: #e4cef0;
+}
+
+.modal-title {
+	margin-top: 10px;
+}
+
+.modal-image {
+	max-width: 35%;
+	max-height: 35%;
+	margin: 5px;
+	margin-left: 10px;
+	float: right;
+}
+
+nav {
+  	font-weight: bold;
+  	color: white;
+  	background-color:#19421d;
+}
+
+.navbar-brand {
+	margin-left: 15px;
+	margin-right: 15px;
+	color:white;
+}
+
+.navbar-brand:hover {
+	color:white;
+}
+
+.nav-link {
+  color: white;
+  margin-left: 10px;
+  margin-top: 5px;
+ }
+
+.nav-link:hover {
+  color: #47c956
+}
+
+.row {
+	margin-bottom: 10px;
+}
+
+.redAsterisk {
+	color:red; 
+	font-size: 1.15em;
+}
+
+select:invalid {
+	color:gray;
+}
+
+.submitBtn {
+	background-color: #258f56;
+	color: white;
+    border: none;
+	padding: 10px 10px;
+	border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+
+table .table-data {
+	padding-left: 30px;
+	padding-right: 20px;
+	font-weight: bold;
+	color: #341948;
+}
+
+
+.table-striped {
+	background-color: #f6e6ff;
+}
