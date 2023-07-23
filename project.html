@@ -27,6 +27,37 @@
       zoom: 1, // Set initial zoom level
     });
 
+
+    var geolocate = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: false
+    });
+
+    map.addControl(geolocate);
+
+    // Once the map is fully loaded, trigger the geolocation update
+    map.on('load', function () {
+      geolocate.trigger();
+
+    });
+
+    // Once the geolocation control initializes, listen for the 'geolocate' event
+    geolocate.on('geolocate', function (e) {
+      var lon = e.coords.longitude;
+      var lat = e.coords.latitude;
+      console.log('User location: ', lon, lat);
+
+      // Update the map's center and zoom to the user's location
+      map.flyTo({
+        center: [lon, lat],
+        zoom: 10 // Adjust the zoom level as desired
+      });
+    });
+
+
+
     // Keep track of markers and their messages
     var markers = [];
     var messages = [];
